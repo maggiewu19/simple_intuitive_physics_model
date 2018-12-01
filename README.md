@@ -12,7 +12,7 @@ Project Setup
 ---------------
 ## Installation
 
-This project was built and tested on MacOS Mojave. I recommend using Python >= 3.6.1 as your default system-wide Python environment
+This project was built and tested on MacOS Mojave. I recommend using Python >= 3.6.1 as your default system-wide Python environment. Please git clone the repository to start. 
 
 ### Python Package Dependencies
 
@@ -42,3 +42,8 @@ There are a total of 11 levels, with the first one being the tutorial level so y
 Upon start of a level, you will press either 'Start' or 'Next' to proceed. If you feel confident about the ball hitting one of the two blocks, please **click and hold on** to the button. If you change your mind throughout that level, you can always feel free to click the other button. If you are simply unsure, especially at the beginning of a level, you can choose not to click on any button. 
 
 Your results will be recorded in the rawData directory with your entered username + level. It will be used as an input to compare with the model outcome. 
+
+Data Collection 
+---------------
+
+Please git push your rawData result to the repository for project data collection. Your input is valuable to the simulation! 
