@@ -14,7 +14,7 @@ background_colour = (255,255,255)
 (width, height) = (480, 350)
 size = 15
 numlevels = 11 
-testing = False 
+testing = True
 pygame.init()
 
 def addVectors(vec):
@@ -60,7 +60,7 @@ def collide(particle, block, collision=False):
 def getDecisionTime(ts, red, green):
     for t in range(len(ts)): 
         if red[t] >= 0.5 or green[t] >= 0.5: 
-            print (ts[t]/ts[-1])
+            # print (ts[t]/ts[-1])
             return (ts[t]/ts[-1])
 
 def plotDist(ts, red, green, unsure): 
@@ -468,13 +468,17 @@ for l in range(len(levels)):
         green.append(dist['green'])
         unsure.append(dist['none'])
 
-    if timeline[-1][0] == 'unsure': 
-        if prev == 'red':
-            timedist.append(('red', end - red_time))
-            timeline.append(('red', end - start))
-        elif prev == 'green':
-            timedist.append(('green', end - green_time))
-            timeline.append(('green', end - start))
+    if len(timeline) == 0: 
+        timeline.append(('unsure', end - start))
+        timedist.append(('unsure', end - start))
+    else: 
+        if timeline[-1][0] == 'unsure': 
+            if prev == 'red':
+                timedist.append(('red', end - red_time))
+                timeline.append(('red', end - start))
+            elif prev == 'green':
+                timedist.append(('green', end - green_time))
+                timeline.append(('green', end - start))
 
     if testing: 
         writeOutput(l, ts, timeline)
@@ -496,9 +500,6 @@ for l in range(len(levels)):
                     before_next = False 
 
         pygame.display.flip()
-
-
-print (sum(dt)/len(dt))
 
 
 

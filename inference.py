@@ -10,7 +10,7 @@ import math
 import numpy as np 
 from scipy import stats 
 
-distance = 300
+distance = 100
 branch = 10
 
 def collide(x, y, size, angle, block, collision=False):
