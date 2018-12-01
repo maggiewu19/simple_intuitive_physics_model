@@ -10,8 +10,8 @@ import math
 import numpy as np 
 from scipy import stats 
 
-distance = 100
-branch = 10
+distance = 1
+branch = 1
 
 def collide(x, y, size, angle, block, collision=False):
     # right bounce

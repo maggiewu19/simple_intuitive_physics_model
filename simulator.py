@@ -13,7 +13,7 @@ DATA_FOLDER = 'rawData/'
 background_colour = (255,255,255)
 (width, height) = (480, 350)
 size = 15
-speed = 2
+speed = 3
 numlevels = 11 
 testing = True
 pygame.init()
