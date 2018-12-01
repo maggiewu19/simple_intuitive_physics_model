@@ -30,8 +30,10 @@ This project was built and tested on MacOS Mojave. I recommend using Python >= 3
 $ python3 simulator.py 
 ```
 1. Enter username (If you are a MIT student, please just use your kerberos) 
-
-2. Play game 
+```
+$ Please Enter Your Kerberos/Username: [username] (e.g. maggiewu) 
+```
+2. Play the game 
 
 ## Game Instructions 
 
