@@ -13,6 +13,7 @@ DATA_FOLDER = 'rawData/'
 background_colour = (255,255,255)
 (width, height) = (480, 350)
 size = 15
+speed = 2
 numlevels = 11 
 testing = True
 pygame.init()
@@ -114,7 +115,7 @@ def writeOutput(level, ts, timeline):
 
 def level0():
     particle = Particle((10, 30), size)
-    particle.speed = 4
+    particle.speed = speed
     particle.angle = math.pi * 1 / 4 
 
     obstacles = [Wall((250, 190), (100, 5)), 
@@ -130,7 +131,7 @@ def level0():
 
 def level1():
     particle = Particle((10, 30), size)
-    particle.speed = 4
+    particle.speed = speed
     particle.angle = math.pi * 1 / 4 
 
     obstacles = [Wall((300, 220), (100, 5)), 
@@ -146,7 +147,7 @@ def level1():
 
 def level2():
     particle = Particle((10, 30), size)
-    particle.speed = 4
+    particle.speed = speed
     particle.angle = math.pi * 1 / 4 
 
     obstacles = [Wall((180, 190), (100, 5)), 
@@ -162,7 +163,7 @@ def level2():
 
 def level3():
     particle = Particle((10, 30), size)
-    particle.speed = 4
+    particle.speed = speed
     particle.angle = math.pi * 1 / 4 
 
     obstacles = [Wall((300, 220), (100, 5)), 
@@ -178,7 +179,7 @@ def level3():
 
 def level4():
     particle = Particle((50, 50), size)
-    particle.speed = 4
+    particle.speed = speed
     particle.angle = math.pi * 1 / 4 
 
     obstacles = [Wall((280, 240), (100, 5)), 
@@ -194,7 +195,7 @@ def level4():
 
 def level5():
     particle = Particle((10, 30), size)
-    particle.speed = 4
+    particle.speed = speed
     particle.angle = math.pi * 1 / 4 
 
     obstacles = [Wall((50, 240), (100, 5)), 
@@ -210,7 +211,7 @@ def level5():
 
 def level6():
     particle = Particle((240, 60), size)
-    particle.speed = 4
+    particle.speed = speed
     particle.angle = math.pi * 1 / 4 
 
     obstacles = [Wall((360, 30), (100, 5)), 
@@ -226,7 +227,7 @@ def level6():
 
 def level7():
     particle = Particle((300, 200), size)
-    particle.speed = 4
+    particle.speed = speed
     particle.angle = math.pi * 1 / 4 
 
     obstacles = [Wall((30, 40), (100, 5)), 
@@ -242,7 +243,7 @@ def level7():
 
 def level8():
     particle = Particle((30, 210), size)
-    particle.speed = 4
+    particle.speed = speed
     particle.angle = math.pi * 1 / 4 
 
     obstacles = [Wall((410, 120), (5, 100)),
@@ -257,7 +258,7 @@ def level8():
 
 def level9():
     particle = Particle((65, 220), size)
-    particle.speed = 4
+    particle.speed = speed
     particle.angle = math.pi * 1 / 4 
 
     obstacles = [Wall((170, 230), (100, 5)), 
@@ -273,7 +274,7 @@ def level9():
 
 def level10():
     particle = Particle((300, 40), size)
-    particle.speed = 4
+    particle.speed = speed
     particle.angle = math.pi * 1 / 4 
 
     obstacles = [Wall((170, 200), (100, 5)), 
