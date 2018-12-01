@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<style>
+.greenbutton {
+    position:absolute;
+    top: 295px;
+    left: 30px;
+    padding: 10px 20px;
+    text-align: center;
+    height: 60px;
+    width: 200px;
+    font-size: 18px;
+    background-color: #4CAF50;
+}
+.redbutton {
+    position:absolute;
+    top: 295px;
+    left: 260px;
+    padding: 10px 20px;
+    text-align: center;
+    height: 60px;
+    width: 200px;
+    font-size: 18px;
+    background-color: #f44336;
+}
+.startbutton {
+    position:absolute;
+    top: 90px;
+    left: 190px;
+    padding: 10px 20px;
+    text-align: center;
+    color: white;
+    height: 110px;
+    width: 110px;
+    font-size: 16px;
+    background-color: #008CBA;
+}
+canvas {
+    border:1px solid #d3d3d3;
+    background-color: #f1f1f1;
+}
+</style>
+</head>
+
+<body>
+
+<button id="gb" class="greenbutton" onmousedown="mouseDown('green')" onmouseup="mouseUp('green')"> GREEN BLOCK </button>
+<button id="rb" class="redbutton" onmousedown="mouseDown('red')" onmouseup="mouseUp('red')"> RED BLOCK </button>
+<button id="sb" class="startbutton" onclick="startGame()"> START</button>
+<button id='nb' class="startbutton" onclick="startGame()"> NEXT </button>
+
+<script>
+
+document.getElementById("nb").style.visibility = "hidden"; 
+
+var myGamePiece;
+var level = '0'; 
+var idleTime;
+var startTime;
+var endTime; 
+var finalTime = new Date('December 14, 2018 00:00:00'); 
+var time = ''; 
+var firstEndTime = true; 
+var haveDisplayed = false; 
+
+function level0() {
+    document.getElementById("sb").style.visibility = "hidden"; 
+    level = '0';
+    myGamePiece = new component(30, 30, "blue", 10, 30);
+
+    redTarget = new target(30, 80, "red", 300, 30)
+    greenTarget = new target(30, 80, "green", 50, 160)
+
+    wall1 = new wall(100, 5, "black", 250, 190)
+    wall2 = new wall(5, 100, "black", 400, 120)
+    wall3 = new wall(100, 5, "black", 150, 140)
+    wall4 = new wall(5, 100, "black", 145, 145)
+
+    myGameArea.start();
+}
+
+
+function level1() {
+    document.getElementById("nb").style.visibility = "hidden"; 
+    finalTime = new Date('December 14, 2018 00:00:00');
+    firstEndTime = true; 
+    time = ''; 
+
+    level = '1';
+    myGamePiece = new component(30, 30, "blue", 10, 30);
+
+    redTarget = new target(30, 80, "red", 320, 50)
+    greenTarget = new target(30, 80, "green", 50, 130)
+
+    wall1 = new wall(100, 5, "black", 320, 220)
+    wall2 = new wall(5, 100, "black", 420, 120)
+    wall3 = new wall(100, 5, "black", 180, 80)
+    wall4 = new wall(100, 5, "black", 120, 170)
+
+    myGameArea.start();
+}
+
+function level2() {
+    document.getElementById("nb").style.visibility = "hidden"; 
+    finalTime = new Date('December 14, 2018 00:00:00');
+    firstEndTime = true; 
+    time = ''; 
+
+    level = '2';
+    myGamePiece = new component(30, 30, "blue", 10, 30);
+
+    redTarget = new target(30, 80, "red", 195, 100)
+    greenTarget = new target(30, 80, "green", 50, 160)
+
+    wall1 = new wall(100, 5, "black", 180, 190)
+    wall2 = new wall(5, 100, "black", 280, 90)
+    wall3 = new wall(100, 5, "black", 180, 85)
+    wall4 = new wall(5, 100, "black", 175, 90)
+
+    myGameArea.start();
+}
+
+function level3() {
+    document.getElementById("nb").style.visibility = "hidden"; 
+    finalTime = new Date('December 14, 2018 00:00:00');
+    firstEndTime = true; 
+    time = ''; 
+
+    level = '3';
+    myGamePiece = new component(30, 30, "blue", 10, 30);
+
+    redTarget = new target(30, 80, "red", 50, 140)
+    greenTarget = new target(30, 80, "green", 300, 50)
+
+    wall1 = new wall(100, 5, "black", 300, 220)
+    wall2 = new wall(5, 100, "black", 230, 90)
+    wall3 = new wall(100, 5, "black", 60, 80)
+    wall4 = new wall(100, 5, "black", 110, 200)
+
+    myGameArea.start();
+}
+
+function level4() {
+    document.getElementById("nb").style.visibility = "hidden"; 
+    finalTime = new Date('December 14, 2018 00:00:00');
+    firstEndTime = true; 
+    time = ''; 
+
+    level = '4';
+    myGamePiece = new component(30, 30, "blue", 50, 50);
+
+    redTarget = new target(30, 80, "red", 300, 30)
+    greenTarget = new target(80, 30, "green", 60, 110)
+
+    wall1 = new wall(100, 5, "black", 280, 240)
+    wall2 = new wall(5, 100, "black", 400, 40)
+    wall3 = new wall(5, 100, "black", 240, 100)
+    wall4 = new wall(100, 5, "black", 30, 200)
+
+    myGameArea.start();
+}
+
+function level5() {
+    document.getElementById("nb").style.visibility = "hidden"; 
+    finalTime = new Date('December 14, 2018 00:00:00');
+    firstEndTime = true; 
+    time = ''; 
+
+    level = '5';
+    myGamePiece = new component(30, 30, "blue", 10, 30);
+
+    redTarget = new target(30, 80, "red", 130, 95)
+    greenTarget = new target(80, 30, "green", 185, 180)
+
+    wall1 = new wall(100, 5, "black", 50, 240)
+    wall2 = new wall(5, 100, "black", 95, 120)
+    wall3 = new wall(100, 5, "black", 100, 80)
+    wall4 = new wall(100, 5, "black", 170, 220)
+
+    myGameArea.start();
+}
+
+function level6() {
+    document.getElementById("nb").style.visibility = "hidden"; 
+    finalTime = new Date('December 14, 2018 00:00:00');
+    firstEndTime = true; 
+    time = ''; 
+
+    level = '6';
+    myGamePiece = new component(30, 30, "blue", 200, 60);
+
+    redTarget = new target(30, 80, "red", 150, 30)
+    greenTarget = new target(30, 80, "green", 90, 150)
+
+    wall1 = new wall(100, 5, "black", 360, 30)
+    wall2 = new wall(5, 100, "black", 70, 160)
+    wall3 = new wall(100, 5, "black", 80, 120)
+    wall4 = new wall(100, 5, "black", 260, 210)
+
+    myGameArea.start();
+}
+
+function level7() {
+    document.getElementById("nb").style.visibility = "hidden"; 
+    finalTime = new Date('December 14, 2018 00:00:00');
+    firstEndTime = true; 
+    time = ''; 
+
+    level = '7';
+    myGamePiece = new component(30, 30, "blue", 300, 200);
+
+    redTarget = new target(80, 30, "red", 20, 150)
+    greenTarget = new target(30, 80, "green", 115, 170)
+
+    wall1 = new wall(100, 5, "black", 30, 40)
+    wall2 = new wall(5, 100, "black", 400, 110)
+    wall3 = new wall(100, 5, "black", 80, 100)
+    wall4 = new wall(100, 5, "black", 170, 210)
+
+    myGameArea.start();
+}
+
+function level8() {
+    document.getElementById("nb").style.visibility = "hidden"; 
+    finalTime = new Date('December 14, 2018 00:00:00');
+    firstEndTime = true; 
+    time = ''; 
+
+    level = '8';
+    myGamePiece = new component(30, 30, "blue", 10, 210);
+
+    redTarget = new target(30, 80, "red", 240, 130)
+    greenTarget = new target(30, 80, "green", 150, 160)
+
+    wall1 = new wall(100, 5, "black", 130, 290)
+    wall2 = new wall(5, 100, "black", 410, 120)
+    wall3 = new wall(100, 5, "black", 30, 80)
+    wall4 = new wall(100, 5, "black", 190, 60)
+
+    myGameArea.start();
+}
+
+function level9() {
+    document.getElementById("nb").style.visibility = "hidden"; 
+    finalTime = new Date('December 14, 2018 00:00:00');
+    firstEndTime = true; 
+    time = ''; 
+
+    level = '9';
+    myGamePiece = new component(30, 30, "blue", 50, 220);
+
+    redTarget = new target(80, 30, "red", 100, 30)
+    greenTarget = new target(30, 80, "green", 320, 150)
+
+    wall1 = new wall(100, 5, "black", 170, 230)
+    wall2 = new wall(5, 100, "black", 390, 150)
+    wall3 = new wall(100, 5, "black", 40, 130)
+    wall4 = new wall(100, 5, "black", 130, 85)
+
+    myGameArea.start();
+}
+
+function level10() {
+    document.getElementById("nb").style.visibility = "hidden"; 
+    finalTime = new Date('December 14, 2018 00:00:00');
+    firstEndTime = true; 
+    time = ''; 
+
+    level = '10';
+    myGamePiece = new component(30, 30, "blue", 300, 40);
+
+    redTarget = new target(80, 30, "red", 180, 30)
+    greenTarget = new target(80, 30, "green", 50, 160)
+
+    wall1 = new wall(100, 5, "black", 170, 200)
+    wall2 = new wall(5, 100, "black", 390, 150)
+    wall3 = new wall(100, 5, "black", 20, 100)
+    wall4 = new wall(100, 5, "black", 120, 80)
+
+    myGameArea.start();
+}
+
+function startGame() {
+    rightWall = new wall(5, 270, "black", 475, 0)
+    topWall = new wall(480, 5, "black", 0, 0)
+    leftWall = new wall(5, 270, "black", 0, 0)
+    bottomWall = new wall(480, 5, "black", 0, 265)
+
+    idleTime = new Date();
+    if (level == '0') {
+        level0();
+    } else if (level == '1') {
+        level1(); 
+    } else if (level == '2') {
+        level2(); 
+    } else if (level == '3') {
+        level3(); 
+    } else if (level == '4') {
+        level4(); 
+    } else if (level == '5') {
+        level5(); 
+    } else if (level == '6') {
+        level6(); 
+    } else if (level == '7') {
+        level7(); 
+    } else if (level == '8') {
+        level8(); 
+    } else if (level == '9') {
+        level9(); 
+    } else if (level == '10') {
+        level10(); 
+    }
+
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 480;
+        this.canvas.height = 270;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateGameArea, 20);        
+    },
+    stop : function() {
+        clearInterval(this.interval);
+    },    
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+function wall(width, height, color, x, y) {
+    this.width = width; 
+    this.height = height; 
+    this.x = x; 
+    this.y = y;
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+}
+
+function target(width, height, color, x, y) {
+    this.width = width; 
+    this.height = height; 
+    this.x = x; 
+    this.y = y;
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+}
+
+function component(width, height, color, x, y, type) {
+    this.type = type;
+    this.width = width;
+    this.height = height;
+    this.x = x;
+    this.y = y;    
+    this.speedX = 2;
+    this.speedY = -2;    
+    this.update = function() {
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.hitY();
+        this.hitX();
+    }
+    this.hitY = function() {
+        var bottom = myGameArea.canvas.height - this.height - 5;;
+        if ((this.y > bottom) || (this.y < 5)) {
+            this.speedY = -this.speedY;
+        }
+    }
+    this.hitX = function() {
+        var right = myGameArea.canvas.width - this.width - 5; 
+        if ((this.x > right) || (this.x < 5)) {
+            this.speedX = -this.speedX; 
+        }
+    }
+    this.crashWith = function(otherobj, obstacle) {
+        var myleft = this.x;
+        var myright = this.x + (this.width);
+        var mytop = this.y;
+        var mybottom = this.y + (this.height);
+        var otherleft = otherobj.x;
+        var otherright = otherobj.x + (otherobj.width);
+        var othertop = otherobj.y;
+        var otherbottom = otherobj.y + (otherobj.height);
+        var crash = true;
+        if ((mybottom < othertop) ||
+               (mytop > otherbottom) ||
+               (myright < otherleft) ||
+               (myleft > otherright)) {
+           crash = false;
+        }
+        if (obstacle && crash) {
+            if ((mytop == otherbottom-1 || mytop == otherbottom) || (mybottom == othertop+1 || mybottom == othertop)) {
+                myGamePiece.speedY = -myGamePiece.speedY; 
+            } else {
+                myGamePiece.speedX = -myGamePiece.speedX;
+            }
+        }
+        return crash
+    }
+}
+
+function updateGameArea() {
+    if (myGamePiece.crashWith(redTarget, false) || myGamePiece.crashWith(greenTarget, false)) {
+        finalTime = new Date(); 
+        myGameArea.stop();
+        if (level == '0') {
+            level = '1' 
+        } else if (level == '1') {
+            level = '2'
+        } else if (level == '2') {
+            level = '3'
+        } else if (level == '3') {
+            level = '4'
+        } else if (level == '4') {
+            level = '5'
+        } else if (level == '5') {
+            level = '6'
+        } else if (level == '6') {
+            level = '7'
+        } else if (level == '7') {
+            level = '8'
+        } else if (level == '8') {
+            level = '9'
+        } else if (level == '9') {
+            level = '10'
+        } else if (level == '10') {
+            level = 'done'
+        }
+        if (level != 'done') {
+            document.getElementById("nb").style.visibility = "visible"; 
+        }
+    } else {
+
+        myGamePiece.crashWith(wall1, true)
+        myGamePiece.crashWith(wall2, true)
+        myGamePiece.crashWith(wall3, true)
+        myGamePiece.crashWith(wall4, true)
+
+        myGameArea.clear();
+
+        myGamePiece.newPos();
+        myGamePiece.update();
+
+        wall1.update()
+        wall2.update()
+        wall3.update()
+        wall4.update()
+
+        rightWall.update(); 
+        topWall.update(); 
+        leftWall.update(); 
+        bottomWall.update(); 
+        redTarget.update(); 
+        greenTarget.update();
+    }
+}
+
+function displayAllTime(dt, color) {
+    if (dt < 0) {
+        return; 
+    }
+    var x = document.createElement("p");
+    var t = document.createTextNode(dt);
+
+    if (level == '1') {
+        display = '0';
+    } else if (level == '2') {
+        display = '1'; 
+    } else if (level == '3') {
+        display = '2'; 
+    } else if (level == '4') {
+        display = '3'; 
+    } else if (level == '5') {
+        display = '4';
+    } else if (level == '6') {
+        display = '5'; 
+    } else if (level == '7') {
+        display = '6'; 
+    } else if (level == '8') {
+        display = '7'; 
+    } else if (level == '9') {
+        display = '8'; 
+    } else if (level == '10') {
+        display = '9'; 
+    } else if (level == 'done') {
+        display = '10'
+    }
+
+    var subtitle = document.createTextNode('Level ' + display + ': ');
+    x.appendChild(subtitle)
+    x.appendChild(t);
+    document.body.appendChild(x).style.color = color; 
+}
+
+function displayTime(dt, color) {
+    if (dt < 0) {
+        return; 
+    }
+    var x = document.createElement("p");
+    var t = document.createTextNode(dt);
+    x.appendChild(t);
+    document.body.appendChild(x).style.color = color; 
+}
+
+function mouseDown() {
+    startTime = new Date(); 
+    if (startTime > finalTime) {
+        return; 
+    }
+    diff = (startTime-idleTime)/1000
+    time += diff + ' (gray) '
+    // displayTime(diff, 'gray')
+}
+
+function mouseUp(color) {
+    endTime = new Date(); 
+    idleTime = new Date(); 
+    if (endTime > finalTime) {
+        if (firstEndTime) {
+            endTime = finalTime; 
+            firstEndTime = false; 
+        } else {
+            return; 
+        }
+    }
+
+    diff = (endTime-startTime)/1000
+    if (diff >= 0) {
+        time += diff + ' (' + color + ') '
+        // displayTime(diff, color)
+
+        if (endTime == finalTime) {
+            displayAllTime(time, 'black');
+            haveDisplayed = true; 
+        }
+    }
+}
+
+</script>
+
+<br> <br> <br> <br><br> 
+
+</body>
+</html>
+
