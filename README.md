@@ -27,7 +27,7 @@ This project was built and tested on MacOS Mojave. I recommend using Python >= 3
 
 0. Start simulator (run in terminal) 
 ```
-python3 simulator.py 
+$ python3 simulator.py 
 ```
 1. Enter username (If you are a MIT student, please just use your kerberos) 
 
