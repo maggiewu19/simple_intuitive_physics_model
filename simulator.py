@@ -14,6 +14,7 @@ background_colour = (255,255,255)
 (width, height) = (480, 350)
 size = 15
 numlevels = 11 
+testing = False 
 pygame.init()
 
 def addVectors(vec):
@@ -55,6 +56,12 @@ def collide(particle, block, collision=False):
             collision = True 
 
     return collision 
+
+def getDecisionTime(ts, red, green):
+    for t in range(len(ts)): 
+        if red[t] >= 0.5 or green[t] >= 0.5: 
+            print (ts[t]/ts[-1])
+            return (ts[t]/ts[-1])
 
 def plotDist(ts, red, green, unsure): 
     plt.plot(ts, red, 'r-', label='Red Block')
@@ -344,8 +351,11 @@ class Block():
 levels = [level0(), level1(), level2(), level3(), level4(), level5(), 
         level6(), level7(), level8(), level9(), level10()]
 
-name = requestName()
-createOutput(name)
+if testing: 
+    name = requestName()
+    createOutput(name)
+
+dt = list() 
 
 for l in range(len(levels)):
     screen = pygame.display.set_mode((width, height))
@@ -437,12 +447,6 @@ for l in range(len(levels)):
         pygame.draw.rect(screen, (0, 200, 0), green_button)
         screen.blit(greenText, (300, 297.5))
 
-        # path = getPaths(particle.x, particle.y, width, height, particle.size, particle.angle, my_walls + my_obstacles, my_blocks)
-        dist = getDistribution(particle.x, particle.y, width, height, particle.size, particle.angle, my_walls + my_obstacles, my_blocks)
-        red.append(dist['red'])
-        green.append(dist['green'])
-        unsure.append(dist['none'])
-
         particle.move()
         particle.bounceEdge()
         particle.display()
@@ -458,6 +462,12 @@ for l in range(len(levels)):
 
         pygame.display.flip()
 
+        # path = getPaths(particle.x, particle.y, width, height, particle.size, particle.angle, my_walls + my_obstacles, my_blocks)
+        dist = getDistribution(particle.x, particle.y, width, height, particle.size, particle.angle, my_walls + my_obstacles, my_blocks)
+        red.append(dist['red'])
+        green.append(dist['green'])
+        unsure.append(dist['none'])
+
     if timeline[-1][0] == 'unsure': 
         if prev == 'red':
             timedist.append(('red', end - red_time))
@@ -466,10 +476,10 @@ for l in range(len(levels)):
             timedist.append(('green', end - green_time))
             timeline.append(('green', end - start))
 
-    print (timeline)
-    print (timedist)
-    writeOutput(l, ts, timeline)
+    if testing: 
+        writeOutput(l, ts, timeline)
     # level_dist.append((ts, red, green, unsure))
+    dt.append(getDecisionTime(ts, red, green))
     # plotDist(ts, red, green, unsure)
     # next button display 
 
@@ -488,6 +498,7 @@ for l in range(len(levels)):
         pygame.display.flip()
 
 
+print (sum(dt)/len(dt))
 
 
 
