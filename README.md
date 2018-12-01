@@ -7,8 +7,6 @@ This repository includes the simple simulation model used to infer human inuitio
 
 **Inference** is the file for inferring model result. No changes should be made here. 
 
-In addition, we also plan to support a number of **Sensors** that provide real-time interactive features to **Models**
-
 
 Project Setup
 ---------------
@@ -18,11 +16,11 @@ This project was built and tested on MacOS Mojave. I recommend using Python >= 3
 
 ### Python Package Dependencies
 
-	  $ pip3 install matplotlib 
-    $ pip3 install pandas 
-    $ pip3 install numpy
-    $ pip3 install scipy 
-    $ python3 -m pip install -U pygame --user
+	$ pip3 install matplotlib 
+	$ pip3 install pandas 
+	$ pip3 install numpy
+	$ pip3 install scipy 
+	$ python3 -m pip install -U pygame --user
 
 
 ## Running the Game 
