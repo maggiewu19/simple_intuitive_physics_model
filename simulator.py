@@ -80,7 +80,7 @@ def totalTime(timeline):
     return count 
 
 def requestName():
-    name = input('Please Enter Your Kerberos: ')
+    name = input('Please Enter Your Kerberos/Username: ')
     return str(name)
 
 def createOutput(name):
