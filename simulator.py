@@ -3,6 +3,7 @@ import random
 import math
 import matplotlib.pyplot as plt
 import pylab as pl
+import numpy as np
 import time 
 import subprocess 
 import pandas as pd 
@@ -15,7 +16,7 @@ background_colour = (255,255,255)
 size = 15
 speed = 3
 numlevels = 11 
-testing = True
+testing = False
 pygame.init()
 
 def addVectors(vec):
@@ -65,9 +66,9 @@ def getDecisionTime(ts, red, green):
             return (ts[t]/ts[-1])
 
 def plotDist(ts, red, green, unsure): 
-    plt.plot(ts, red, 'r-', label='Red Block')
-    plt.plot(ts, green, 'g-', label='Green Block')
-    plt.plot(ts, unsure, 'b-', label='Unsure')
+    plt.plot(np.array(ts)/ts[-1], red, 'r-', label='Red Block')
+    plt.plot(np.array(ts)/ts[-1], green, 'g-', label='Green Block')
+    plt.plot(np.array(ts)/ts[-1], unsure, 'b-', label='Unsure')
     plt.ylabel('Probability')
     plt.xlabel('Time')
     plt.legend(loc='best')
@@ -87,7 +88,7 @@ def requestName():
 def createOutput(name):
     CSV_CMD = 'touch'
     for l in range(numlevels):
-        CSV_CMD += ' ' + DATA_FOLDER + name + str(l) + '.csv'
+        CSV_CMD += ' ' + DATA_FOLDER + name + '_' + str(l) + '.csv'
 
     subprocess.check_output(CSV_CMD, shell=True)
 
@@ -100,7 +101,7 @@ def writeOutput(level, ts, timeline):
 
                 break 
 
-    csvFile = DATA_FOLDER + name + str(level) + '.csv'
+    csvFile = DATA_FOLDER + name + '_' + str(level) + '.csv'
     t = 0.0 
     d = {'time': list(), 'status': list()}
     while t < ts[-1]: 
@@ -437,6 +438,11 @@ for l in range(len(levels)):
                     timedist.append(('green', button_start - green_time))
                     timeline.append(('green', button_start - start))
 
+        # path = getPaths(particle.x, particle.y, width, height, particle.size, particle.angle, my_walls + my_obstacles, my_blocks)
+        dist = getDistribution(particle.x, particle.y, width, height, particle.size, particle.angle, my_walls + my_obstacles, my_blocks)
+        red.append(dist['red'])
+        green.append(dist['green'])
+        unsure.append(dist['none'])
 
         ts.append(time.time()-start)
 
@@ -463,17 +469,11 @@ for l in range(len(levels)):
 
         pygame.display.flip()
 
-        # path = getPaths(particle.x, particle.y, width, height, particle.size, particle.angle, my_walls + my_obstacles, my_blocks)
-        dist = getDistribution(particle.x, particle.y, width, height, particle.size, particle.angle, my_walls + my_obstacles, my_blocks)
-        red.append(dist['red'])
-        green.append(dist['green'])
-        unsure.append(dist['none'])
-
     if len(timeline) == 0: 
         timeline.append(('unsure', end - start))
         timedist.append(('unsure', end - start))
     else: 
-        if timeline[-1][0] == 'unsure': 
+        if timedist[-1][0] == 'unsure': 
             if prev == 'red':
                 timedist.append(('red', end - red_time))
                 timeline.append(('red', end - start))
@@ -484,8 +484,8 @@ for l in range(len(levels)):
     if testing: 
         writeOutput(l, ts, timeline)
     # level_dist.append((ts, red, green, unsure))
-    dt.append(getDecisionTime(ts, red, green))
-    # plotDist(ts, red, green, unsure)
+    # dt.append(getDecisionTime(ts, red, green))
+    plotDist(ts, red, green, unsure)
     # next button display 
 
     while before_next: 

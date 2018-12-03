@@ -29,7 +29,6 @@ def processData(level):
 
 	data = parseCSV(level)
 	df = pd.DataFrame(data=data)
-	print (df)
 
 	df['unsure'] = df.apply(lambda x: countStatus(x, ['unsure']), axis=1)
 	df['green'] = df.apply(lambda x: countStatus(x, ['green']), axis=1)
@@ -44,7 +43,7 @@ def processData(level):
 
 def createCSV(level):
 	df = processData(level)
-	csvFile = csv_dir + 'processed' + str(level) + '.csv'
+	csvFile = csv_dir + 'processed_' + str(level) + '.csv'
 
 	with open(csvFile, 'w') as f: 
 		df.to_csv(f)
